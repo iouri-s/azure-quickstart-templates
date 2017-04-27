@@ -10,6 +10,7 @@
     },
     "instanceCount": {
       "type": "int",
+      "defaultValue": 10,
       "metadata": {
         "description": "Number of VM instances to create in the scale set"
       }
@@ -56,10 +57,10 @@
         "description": "The Password of the administrative user for each VM instance created"
       }
     },
-    "sourceImageVhdUri": {
+    "sourceImageId": {
       "type": "string",
       "metadata": {
-        "description": "The source of the blob containing the custom image"
+        "description": "Managed image ID"
       }
     },
     "frontEndLBPort": {
@@ -118,25 +119,8 @@
     "lbBEAddressPoolID": "[concat(variables('lbID'),'/backendAddressPools/',variables('lbBEAddressPool'))]",
     "lbWebProbeID": "[concat(variables('lbID'),'/probes/',variables('lbWebProbeName'))]",
     "networkApi": "2016-03-30",
-    "imageName": "myCustomImage"
   },
   "resources": [
-    {
-      "type": "Microsoft.Compute/images",
-      "apiVersion": "2016-04-30-preview",
-      "name": "[variables('imageName')]",
-      "location": "[resourceGroup().location]",
-      "properties": {
-        "storageProfile": {
-          "osDisk": {
-            "osType": "Windows",
-            "osState": "Generalized",
-            "blobUri": "[parameters('sourceImageVhdUri')]",
-            "storageAccountType": "Standard_LRS"
-          }
-        }
-      }
-    },
     {
       "apiVersion": "[variables('networkApi')]",
       "type": "Microsoft.Network/virtualNetworks",
@@ -235,8 +219,7 @@
       "location": "[resourceGroup().location]",
       "dependsOn": [
         "[concat('Microsoft.Network/loadBalancers/',variables('lbName'))]",
-        "[concat('Microsoft.Network/virtualNetworks/',variables('virtualNetworkName'))]",
-        "[concat('Microsoft.Compute/images/',variables('imageName'))]"
+        "[concat('Microsoft.Network/virtualNetworks/',variables('virtualNetworkName'))]"
       ],
       "sku": {
         "name": "[parameters('vmSize')]",
@@ -251,7 +234,7 @@
         "virtualMachineProfile": {
           "storageProfile": {
             "imageReference": {
-              "id": "[resourceId('Microsoft.Compute/images', variables('imageName'))]"
+              "id": "[parameters('sourceImageId')]"
             }
           },
           "osProfile": {
