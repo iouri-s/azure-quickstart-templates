@@ -59,7 +59,7 @@
     },
     "sourceImageId": {
       "type": "string",
-      "defaultValue": "/subscriptions/0a27a46a-93e9-451a-a7d1-0a28df6d14ee/resourceGroups/iourisprivatelabrg094444/providers/Microsoft.Compute/images/serverCore",
+      "defaultValue": "/subscriptions/452c0db0-0ccf-4efd-9903-ac8032289411/resourceGroups/iourisxcloudrg426895/providers/Microsoft.Compute/images/serverContainers",
       "metadata": {
         "description": "Managed image ID"
       }

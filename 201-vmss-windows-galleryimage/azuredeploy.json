@@ -59,7 +59,7 @@
     },
     "sourceImageId": {
       "type": "string",
-      "defaultValue": "/subscriptions/0a27a46a-93e9-451a-a7d1-0a28df6d14ee/resourceGroups/iourisprivatelabrg094444/providers/Microsoft.Compute/images/serverCore",
+      "defaultValue": "/subscriptions/452c0db0-0ccf-4efd-9903-ac8032289411/resourceGroups/iourisxcloudrg426895/providers/Microsoft.Compute/images/serverContainers",
       "metadata": {
         "description": "Managed image ID"
       }
@@ -119,7 +119,7 @@
     "lbFEIPConfigID": "[concat(variables('lbID'),'/frontendIPConfigurations/',variables('lbFEName'))]",
     "lbBEAddressPoolID": "[concat(variables('lbID'),'/backendAddressPools/',variables('lbBEAddressPool'))]",
     "lbWebProbeID": "[concat(variables('lbID'),'/probes/',variables('lbWebProbeName'))]",
-    "networkApi": "2016-03-30",
+    "networkApi": "2016-03-30"
   },
   "resources": [
     {
@@ -221,11 +221,12 @@
           "storageProfile": {
             
             "imageReference": {
-      "offer": "WindowsServer",
-      "publisher": "MicrosoftWindowsServer",
-      "sku": "2016-Datacenter-Server-Core",
-      "version": "latest"
-            }
+  "offer": "WindowsServer",
+  "publisher": "MicrosoftWindowsServer",
+  "sku": "2016-Datacenter-with-Containers",
+  "version": "latest"
+}
+
           },
           "osProfile": {
             "computerNamePrefix": "[parameters('vmSSName')]",
