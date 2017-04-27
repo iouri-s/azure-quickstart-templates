@@ -189,9 +189,6 @@
               "backendAddressPool": {
                 "id": "[variables('lbBEAddressPoolID')]"
               },
-              "probe": {
-                "id": "[variables('lbWebProbeID')]"
-              },
               "protocol": "tcp",
               "frontendPort": "[parameters('frontEndLBPort')]",
               "backendPort": "[parameters('backEndLBPort')]",
