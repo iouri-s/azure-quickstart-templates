@@ -222,8 +222,12 @@
         },
         "virtualMachineProfile": {
           "storageProfile": {
+            
             "imageReference": {
-              "id": "[parameters('sourceImageId')]"
+      "offer": "WindowsServer",
+      "publisher": "MicrosoftWindowsServer",
+      "sku": "2016-Datacenter-Server-Core",
+      "version": "latest"
             }
           },
           "osProfile": {
